@@ -27,7 +27,19 @@ class MeetupResource < ActiveResource::Base
 
     def decode(xml)
       # ISO-8859-1 works both OS X and Solaris
-      Hash.from_xml(xml.sub('latin-1','ISO-8859-1'))["results"]["items"].values
+      from_xml_data(Hash.from_xml(xml.sub('latin-1','ISO-8859-1'))["results"]["items"].values.first)
+    end
+
+
+    private
+    # Manipulate from_xml Hash, because xml_simple is not exactly what we
+    # want for ActiveResource.
+    def from_xml_data(data)
+      if data.is_a?(Hash) && data.keys.size == 1
+        data.values.first
+      else
+        Array.new.push(data)
+      end
     end
 
   end
