@@ -1,6 +1,9 @@
 
 class Rsvp < MeetupResource
 
+  # todo: how to automaticaly strip meetup_ in the parent class?
+  self.element_name = "rsvp"
+
   # Example:
   #  Rsvp.for_event('437658')
   def self.for_event(event_id)
