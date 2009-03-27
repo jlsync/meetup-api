@@ -1,8 +1,5 @@
 class MeetupMember < MeetupResource
 
-  # todo: how to automaticaly strip meetup_ in the parent class?
-  self.element_name = "member"
-
   # Examples:
   #  group_members = MeetupMember.for_group('437658')
   #  group_members = MeetupMember.for_group('437658,45679')

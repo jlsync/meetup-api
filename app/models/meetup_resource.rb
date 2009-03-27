@@ -19,6 +19,12 @@ class MeetupResource < ActiveResource::Base
   # Meetup API Limits: http://www.meetup.com/meetup_api/docs/#limits
   API_MAX_RESULTS = 200
 
+  def self.inherited(klass)
+    # e.g. MeetupGroup.element_name = 'group'
+    klass.send('element_name=', klass.name.sub(/^Meetup/,"").downcase)
+  end
+
+
   module MeetupXmlFormat
     extend self
 
