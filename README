@@ -2,6 +2,18 @@
 ActiveResource classes for use with the Meetup.com API
 
 I've used some of this code to power the Meetup API integration 
-with http://big.first.name/nametags
+to generate meetup.com event name badges with http://big.first.name/
+
+
+Example Usage:
+
+First set your meetup.com api key in API_KEY in the base class MeetupResource
+
+  rsvps = MeetupRsvp.for_event('9190765')
+  first_rsvp = rsvps.first
+  first_member_details = MeetupMember.for_member(first_rsvp.member_id)
+  groups_of_first_member = MeetupGroup.for_member(first_member_details.id)
+  fellow_group_member_details = MeetupMember.for_group(groups_of_first_member.map{|g| g.id}.join(","))
+
 
 
